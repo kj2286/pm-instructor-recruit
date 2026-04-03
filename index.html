@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강사 모집 — PM 온라인 학원</title>
+  <meta name="description" content="4년 연속 연 매출 10억, 수강생 1,000명+. 검증된 시스템으로 함께할 수학 강사를 모집합니다." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #000000;
+      --text: #f0f0fa;
+      --text-dim: rgba(240, 240, 250, 0.6);
+      --text-faint: rgba(240, 240, 250, 0.35);
+      --mint: #2ECC9B;
+      --btn-bg: rgba(240, 240, 250, 0.1);
+      --btn-border: rgba(240, 240, 250, 0.35);
+      --divider: rgba(240, 240, 250, 0.1);
+      --font: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    .label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* ===== LAYOUT ===== */
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0;
+    }
+
+    .inner {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    /* ===== GHOST BUTTON ===== */
+    .btn-ghost {
+      display: inline-block;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      border-radius: 32px;
+      padding: 14px 32px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(240, 240, 250, 0.17);
+      border-color: rgba(240, 240, 250, 0.55);
+    }
+
+    .btn-primary {
+      background: rgba(46, 204, 155, 0.15);
+      border: 1px solid rgba(46, 204, 155, 0.5);
+      border-radius: 32px;
+      padding: 16px 40px;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.3s ease, border-color 0.3s ease;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: rgba(46, 204, 155, 0.25);
+      border-color: rgba(46, 204, 155, 0.75);
+    }
+
+    /* ===== SCROLL ANIMATION ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+    .fade-in-delay-5 { transition-delay: 0.5s; }
+    .fade-in-delay-6 { transition-delay: 0.6s; }
+    .fade-in-delay-7 { transition-delay: 0.7s; }
+
+    /* ===== SKIP LINK ===== */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    .sr-only:focus {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      width: auto;
+      height: auto;
+      padding: 12px 24px;
+      margin: 0;
+      clip: auto;
+      background: var(--bg);
+      border: 1px solid var(--btn-border);
+      border-radius: 32px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      z-index: 9999;
+      text-decoration: none;
+    }
+
+    /* ===== FOCUS VISIBLE ===== */
+    .btn-ghost:focus-visible,
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 4px;
+    }
+
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: none;
+      border-bottom-color: var(--mint);
+    }
+
+    /* ===== S1 HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 48px 0;
+      position: relative;
+    }
+
+    #hero .hero-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 32px;
+    }
+
+    #hero .hero-title {
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 28px;
+      white-space: pre-line;
+    }
+
+    #hero .hero-sub {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    #hero .hero-stats {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      margin-top: auto;
+      padding: 48px 0 64px;
+      width: 100%;
+      max-width: 720px;
+      border-top: 1px solid var(--divider);
+    }
+
+    .hero-stat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .hero-stat + .hero-stat {
+      border-left: 1px solid var(--divider);
+    }
+
+    .hero-stat .stat-num {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .hero-stat .stat-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    /* ===== S2 SYSTEM OVERVIEW ===== */
+    .system-items {
+      margin-top: 64px;
+    }
+
+    .system-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 32px;
+      padding: 36px 0;
+      border-top: 1px solid var(--divider);
+    }
+
+    .system-item:last-child {
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .system-item .item-num {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-faint);
+      padding-top: 4px;
+    }
+
+    .system-item .item-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .system-item .item-desc {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+    }
+
+    /* ===== S3 FUNNEL ===== */
+    .funnel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 48px;
+    }
+
+    .funnel-left .section-sub {
+      margin-bottom: 40px;
+    }
+
+    .quote-block {
+      border-left: 2px solid var(--mint);
+      padding: 0 0 0 24px;
+      margin-top: 32px;
+    }
+
+    .quote-block p {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+      line-height: 1.75;
+      font-style: italic;
+    }
+
+    .funnel-steps {
+      position: relative;
+      margin-top: 12px;
+    }
+
+    .funnel-step {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 0 20px;
+      padding: 24px 0;
+      border-top: 1px solid var(--divider);
+      position: relative;
+    }
+
+    .funnel-step:last-child {
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .funnel-step .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-faint);
+      padding-top: 3px;
+    }
+
+    .funnel-step .step-text {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+    }
+
+    .funnel-step .step-text strong {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ===== S4 ASSIGNMENT ===== */
+    .assignment-items {
+      margin-top: 64px;
+    }
+
+    .assignment-item {
+      padding: 40px 0;
+      border-top: 1px solid var(--divider);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .assignment-item:last-child {
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .assignment-item .item-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .assignment-item .item-desc {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+      max-width: 560px;
+    }
+
+    .big-number {
+      font-size: clamp(48px, 5vw, 72px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      text-align: right;
+    }
+
+    .big-number .big-number-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: right;
+      margin-top: 6px;
+    }
+
+    /* ===== S5 TECH ===== */
+    .tech-items {
+      margin-top: 64px;
+    }
+
+    .tech-item {
+      padding: 36px 0;
+      border-top: 1px solid var(--divider);
+    }
+
+    .tech-item:last-child {
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .tech-item .item-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .tech-item .item-desc {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+    }
+
+    .tech-quote {
+      margin-top: 64px;
+      text-align: center;
+    }
+
+    .tech-quote p {
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 700;
+      color: var(--text-dim);
+      line-height: 1.5;
+      letter-spacing: 1px;
+    }
+
+    /* ===== S6 BENEFITS ===== */
+    .benefits-items {
+      margin-top: 64px;
+    }
+
+    .benefit-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 32px;
+      padding: 36px 0;
+      border-top: 1px solid var(--divider);
+    }
+
+    .benefit-item:last-child {
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .benefit-item .item-num {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-faint);
+      padding-top: 4px;
+    }
+
+    .benefit-item .item-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .benefit-item .item-desc {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+    }
+
+    /* ===== S7 NUMBERS ===== */
+    #numbers {
+      min-height: 60vh;
+      padding: 80px 0;
+    }
+
+    .numbers-row {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .number-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 32px;
+    }
+
+    .number-item + .number-item {
+      border-left: 1px solid var(--divider);
+    }
+
+    .number-item .num {
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .number-item .num-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    /* ===== S8 FORM ===== */
+    #form {
+      padding: 120px 0 80px;
+    }
+
+    .form-wrap {
+      max-width: 640px;
+    }
+
+    .form-fields {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .field label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(240, 240, 250, 0.2);
+      outline: none;
+      font-family: var(--font);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text);
+      padding: 12px 0;
+      width: 100%;
+      transition: border-color 0.3s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(240, 240, 250, 0.25);
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-bottom-color: var(--mint);
+    }
+
+    .field select {
+      cursor: pointer;
+    }
+
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f0f0fa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 4px center;
+      padding-right: 24px;
+    }
+
+    .field select option {
+      background: #000000;
+      color: var(--text);
+    }
+
+    .field textarea {
+      resize: none;
+      min-height: 120px;
+      line-height: 1.65;
+    }
+
+    .form-submit {
+      margin-top: 48px;
+    }
+
+    .field-error {
+      font-size: 12px;
+      color: #ff6b6b;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .field.has-error input,
+    .field.has-error select,
+    .field.has-error textarea {
+      border-bottom-color: #ff6b6b;
+    }
+
+    .field.has-error .field-error {
+      display: block;
+    }
+
+    /* ===== SUCCESS OVERLAY ===== */
+    #success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+
+    #success-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #success-overlay .success-title {
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    #success-overlay .success-sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dim);
+      text-align: center;
+    }
+
+    #success-overlay .success-close {
+      margin-top: 40px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--divider);
+      padding: 40px 48px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .funnel-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 80px 0;
+        min-height: 80vh;
+      }
+
+      .inner {
+        padding: 0 24px;
+      }
+
+      #hero {
+        padding: 80px 24px 0;
+      }
+
+      #hero .hero-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        padding: 40px 0 48px;
+      }
+
+      .hero-stat + .hero-stat {
+        border-left: none;
+        border-top: 1px solid var(--divider);
+        padding-top: 32px;
+      }
+
+      .numbers-row {
+        flex-wrap: wrap;
+        padding: 0 24px;
+        gap: 0;
+      }
+
+      .number-item {
+        flex: 0 0 50%;
+        padding: 32px 16px;
+      }
+
+      .number-item + .number-item {
+        border-left: none;
+      }
+
+      .number-item:nth-child(2n) {
+        border-left: 1px solid var(--divider);
+      }
+
+      .number-item:nth-child(n+3) {
+        border-top: 1px solid var(--divider);
+      }
+
+      .assignment-item {
+        grid-template-columns: 1fr;
+      }
+
+      .big-number {
+        text-align: left;
+      }
+
+      .big-number .big-number-label {
+        text-align: left;
+      }
+
+      .system-item {
+        grid-template-columns: 36px 1fr;
+        gap: 0 20px;
+      }
+
+      #numbers {
+        min-height: auto;
+        padding: 60px 0;
+      }
+
+      footer {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn-ghost {
+        padding: 12px 24px;
+        font-size: 12px;
+      }
+
+      .system-item .item-title,
+      .benefit-item .item-title,
+      .assignment-item .item-title,
+      .tech-item .item-title {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+<a href="#form" class="sr-only">지원서로 건너뛰기</a>
+
+<!-- ===== S1. HERO ===== -->
+<section id="hero">
+  <div class="fade-in hero-label">INSTRUCTOR RECRUITMENT</div>
+  <h1 class="fade-in fade-in-delay-1 hero-title">성공의 공식은&#10;이미 증명되었습니다</h1>
+  <p class="fade-in fade-in-delay-2 hero-sub">명문대 출신 X &nbsp;·&nbsp; 수학 전공자 X — 시스템만으로 4년 연속 연 매출 10억 달성</p>
+  <a href="#form" class="btn-ghost fade-in fade-in-delay-3">강사 지원하기</a>
+
+  <div class="hero-stats fade-in fade-in-delay-4">
+    <div class="hero-stat">
+      <span class="stat-num counter" data-target="10" data-suffix="억+">10억+</span>
+      <span class="stat-label">연 매출 (4년 연속)</span>
+    </div>
+    <div class="hero-stat">
+      <span class="stat-num counter" data-target="1000" data-suffix="+">1,000+</span>
+      <span class="stat-label">누적 수강생</span>
+    </div>
+    <div class="hero-stat">
+      <span class="stat-num counter" data-target="5" data-suffix="년+">5년+</span>
+      <span class="stat-label">브랜드 운영</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S2. SYSTEM OVERVIEW ===== -->
+<section id="system">
+  <div class="inner">
+    <span class="label fade-in">PROVEN SYSTEM</span>
+    <h2 class="section-title fade-in fade-in-delay-1">시스템이 가져온 성과</h2>
+    <p class="section-sub fade-in fade-in-delay-2">온라인 학원의 성과는 단순한 강의만으로 이루어지지 않았습니다</p>
+
+    <div class="system-items">
+      <div class="system-item fade-in fade-in-delay-1">
+        <span class="item-num">01</span>
+        <div>
+          <div class="item-title">의도된 불편함</div>
+          <div class="item-desc">결제의 허들을 높여 신뢰도 제고</div>
+        </div>
+      </div>
+      <div class="system-item fade-in fade-in-delay-2">
+        <span class="item-num">02</span>
+        <div>
+          <div class="item-title">강제 관리 시스템</div>
+          <div class="item-desc">학습을 할 수 밖에 없는 과제 관리</div>
+        </div>
+      </div>
+      <div class="system-item fade-in fade-in-delay-3">
+        <span class="item-num">03</span>
+        <div>
+          <div class="item-title">초 개인화한 소통</div>
+          <div class="item-desc">밀착형 라포 형성</div>
+        </div>
+      </div>
+      <div class="system-item fade-in fade-in-delay-4">
+        <span class="item-num">04</span>
+        <div>
+          <div class="item-title">압도적 영상 퀄리티</div>
+          <div class="item-desc">집중할 수 밖에 없는 콘텐츠</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S3. FUNNEL STRATEGY ===== -->
+<section id="funnel">
+  <div class="inner">
+    <span class="label fade-in">FUNNEL STRATEGY</span>
+    <h2 class="section-title fade-in fade-in-delay-1">결제유도보다 강한 라포를 형성하는 인입</h2>
+
+    <div class="funnel-grid">
+      <div class="funnel-left fade-in fade-in-delay-2">
+        <p class="section-sub">퍼널 전략의 핵심은 결제를 유도하지 않는 것입니다. 학생이 스스로 들어오고 싶게 만드는 구조가 실제 결제율을 높입니다.</p>
+        <div class="quote-block">
+          <p>"결제 링크가 보이는 순간 '구매 상품'이 됩니다. 안 보이면 '들어가고 싶은 곳'이 됩니다."</p>
+        </div>
+      </div>
+
+      <div class="funnel-steps fade-in fade-in-delay-3">
+        <div class="funnel-step">
+          <span class="step-num">01</span>
+          <div class="step-text"><strong>DM으로 오게하는 자료 제작</strong></div>
+        </div>
+        <div class="funnel-step">
+          <span class="step-num">02</span>
+          <div class="step-text"><strong>학생 인증 요청</strong></div>
+        </div>
+        <div class="funnel-step">
+          <span class="step-num">03</span>
+          <div class="step-text"><strong>팬심을 만드는 직접 소통</strong></div>
+        </div>
+        <div class="funnel-step">
+          <span class="step-num">04</span>
+          <div class="step-text"><strong>2주 후 넛지</strong></div>
+        </div>
+        <div class="funnel-step">
+          <span class="step-num">05</span>
+          <div class="step-text"><strong>타겟 필터링</strong> — 3등급 이하 전문</div>
+        </div>
+        <div class="funnel-step">
+          <span class="step-num">06</span>
+          <div class="step-text"><strong>3시간 OT 완주</strong></div>
+        </div>
+        <div class="funnel-step">
+          <span class="step-num">07</span>
+          <div class="step-text"><strong>학생 직접 결제</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S4. ASSIGNMENT SYSTEM ===== -->
+<section id="assignment">
+  <div class="inner">
+    <span class="label fade-in">MANAGEMENT SYSTEM</span>
+    <h2 class="section-title fade-in fade-in-delay-1">오프라인을 압도하는 강제적 과제 관리</h2>
+
+    <div class="assignment-items">
+      <div class="assignment-item fade-in fade-in-delay-2">
+        <div>
+          <div class="item-title">영상 과제 (티칭 공부법)</div>
+          <div class="item-desc">당일 배운 개념을 선생님처럼 설명하는 영상 촬영 제출</div>
+        </div>
+      </div>
+      <div class="assignment-item fade-in fade-in-delay-3">
+        <div>
+          <div class="item-title">AI 기반 피드백</div>
+          <div class="item-desc">Gemini API로 키워드 분석, 강사 명의로 피드백 발송. 피드백 시간이 획기적으로 단축됩니다.</div>
+        </div>
+        <div class="big-number">
+          10분
+          <span class="big-number-label">피드백 소요시간</span>
+        </div>
+      </div>
+      <div class="assignment-item fade-in fade-in-delay-4">
+        <div>
+          <div class="item-title">강제 퇴원 시스템</div>
+          <div class="item-desc">기한 내 미제출 시 즉각 퇴원 및 권한 박탈. 타협이 시스템을 무너뜨린다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S5. NEXT-GEN TECH ===== -->
+<section id="tech">
+  <div class="inner">
+    <span class="label fade-in">DATA-DRIVEN</span>
+    <h2 class="section-title fade-in fade-in-delay-1">30명에게 30개의 다른 숙제</h2>
+
+    <div class="tech-items">
+      <div class="tech-item fade-in fade-in-delay-2">
+        <div class="item-title">수학비서 INDEX</div>
+        <div class="item-desc">전국 학교별 기출 분류, 히트맵 시각화로 빈출 유형을 한눈에 파악합니다.</div>
+      </div>
+      <div class="tech-item fade-in fade-in-delay-3">
+        <div class="item-title">개인화 과제</div>
+        <div class="item-desc">학교별 빈출 유형 + 학생 개인 약점 + 실전 모의고사까지 결합한 완전 맞춤형 커리큘럼</div>
+      </div>
+      <div class="tech-item fade-in fade-in-delay-4">
+        <div class="item-title">스마트펜</div>
+        <div class="item-desc">필기 궤적 추적, 집중도 트래킹 — 추후 적용 예정</div>
+      </div>
+    </div>
+
+    <div class="tech-quote fade-in fade-in-delay-5">
+      <p>데이터 기반 개인화 커리큘럼</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S6. BENEFITS ===== -->
+<section id="benefits">
+  <div class="inner">
+    <span class="label fade-in">WHY JOIN US</span>
+    <h2 class="section-title fade-in fade-in-delay-1">합류하면 얻는 것</h2>
+
+    <div class="benefits-items">
+      <div class="benefit-item fade-in fade-in-delay-2">
+        <span class="item-num">01</span>
+        <div>
+          <div class="item-title">검증된 시스템</div>
+          <div class="item-desc">퍼널 전략, 과제 관리, AI 피드백 올인원 제공</div>
+        </div>
+      </div>
+      <div class="benefit-item fade-in fade-in-delay-3">
+        <span class="item-num">02</span>
+        <div>
+          <div class="item-title">체계적 온보딩</div>
+          <div class="item-desc">단계별 교안 기반 신규 강사 트레이닝</div>
+        </div>
+      </div>
+      <div class="benefit-item fade-in fade-in-delay-4">
+        <span class="item-num">03</span>
+        <div>
+          <div class="item-title">마케팅 지원</div>
+          <div class="item-desc">유튜브·인스타그램 채널 전략 코칭</div>
+        </div>
+      </div>
+      <div class="benefit-item fade-in fade-in-delay-5">
+        <span class="item-num">04</span>
+        <div>
+          <div class="item-title">데이터 도구</div>
+          <div class="item-desc">수학비서 INDEX, 학교별 기출 DB 제공</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S7. NUMBERS ===== -->
+<section id="numbers">
+  <div class="numbers-row">
+    <div class="number-item fade-in">
+      <span class="num counter" data-target="10" data-suffix="억+">10억+</span>
+      <span class="num-label">연 매출 · 4년 연속</span>
+    </div>
+    <div class="number-item fade-in fade-in-delay-1">
+      <span class="num counter" data-target="1000" data-suffix="+">1,000+</span>
+      <span class="num-label">누적 수강생</span>
+    </div>
+    <div class="number-item fade-in fade-in-delay-2">
+      <span class="num counter" data-target="95" data-suffix="%+">95%+</span>
+      <span class="num-label">과제 제출률</span>
+    </div>
+    <div class="number-item fade-in fade-in-delay-3">
+      <span class="num counter" data-target="5" data-suffix="년+">5년+</span>
+      <span class="num-label">브랜드 운영</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S8. APPLICATION FORM ===== -->
+<section id="form">
+  <div class="inner">
+    <div class="form-wrap">
+      <span class="label fade-in">JOIN US</span>
+      <h2 class="section-title fade-in fade-in-delay-1">함께할 강사를 찾습니다</h2>
+      <p class="section-sub fade-in fade-in-delay-2">아래 양식을 작성해 주세요. 검토 후 연락드리겠습니다.</p>
+
+      <form id="apply-form" class="form-fields fade-in fade-in-delay-3" novalidate>
+        <div class="field" id="field-name">
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" required placeholder="홍길동" />
+          <span class="field-error">이름을 입력해 주세요</span>
+        </div>
+        <div class="field" id="field-phone">
+          <label for="phone">연락처</label>
+          <input type="tel" id="phone" name="phone" required placeholder="010-0000-0000" pattern="[0-9]{2,3}-?[0-9]{3,4}-?[0-9]{4}" />
+          <span class="field-error">올바른 연락처를 입력해 주세요</span>
+        </div>
+        <div class="field" id="field-experience">
+          <label for="experience">수학 강의 경력</label>
+          <select id="experience" name="experience" required>
+            <option value="" disabled selected>선택해 주세요</option>
+            <option value="none">없음</option>
+            <option value="under1">1년 미만</option>
+            <option value="1to3">1-3년</option>
+            <option value="over3">3년 이상</option>
+          </select>
+          <span class="field-error">경력을 선택해 주세요</span>
+        </div>
+        <div class="field" id="field-intro">
+          <label for="intro">자기소개 및 지원 동기</label>
+          <textarea id="intro" name="intro" required placeholder="간략하게 자신을 소개하고 지원 동기를 작성해 주세요."></textarea>
+          <span class="field-error">자기소개를 입력해 주세요</span>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">지원서 제출하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>PM 온라인 학원</p>
+</footer>
+
+<!-- ===== SUCCESS OVERLAY ===== -->
+<div id="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-title-text">
+  <h2 class="success-title" id="success-title-text">지원이 완료되었습니다</h2>
+  <p class="success-sub">검토 후 빠른 시일 내에 연락드리겠습니다.</p>
+  <button class="btn-ghost success-close" id="success-close-btn" aria-label="지원 완료 창 닫기">닫기</button>
+</div>
+
+<script>
+  // ===== SCROLL ANIMATION =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => {
+    observer.observe(el);
+  });
+
+  // ===== COUNTER ANIMATION =====
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = 'true';
+        const target = parseInt(entry.target.dataset.target, 10);
+        const suffix = entry.target.dataset.suffix || '';
+        const duration = 1400;
+        const start = performance.now();
+
+        function step(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = Math.round(eased * target);
+          entry.target.textContent = (value >= 1000 ? value.toLocaleString() : value) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.counter').forEach(el => {
+    counterObserver.observe(el);
+  });
+
+  // ===== FORM VALIDATION & SUBMIT =====
+  const form = document.getElementById('apply-form');
+  const overlay = document.getElementById('success-overlay');
+  const closeBtn = document.getElementById('success-close-btn');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  function validateField(id) {
+    const field = document.getElementById('field-' + id);
+    const input = document.getElementById(id);
+    let valid = true;
+
+    if (id === 'phone') {
+      const phoneRegex = /^01[016789]-?\d{3,4}-?\d{4}$/;
+      valid = phoneRegex.test(input.value.trim());
+    } else if (id === 'experience') {
+      valid = input.value !== '';
+    } else {
+      valid = input.value.trim() !== '';
+    }
+
+    field.classList.toggle('has-error', !valid);
+    return valid;
+  }
+
+  ['name', 'phone', 'experience', 'intro'].forEach(id => {
+    const input = document.getElementById(id);
+    input.addEventListener('blur', () => validateField(id));
+    input.addEventListener('input', () => {
+      document.getElementById('field-' + id).classList.remove('has-error');
+    });
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fields = ['name', 'phone', 'experience', 'intro'];
+    let allValid = true;
+
+    fields.forEach(id => {
+      if (!validateField(id)) allValid = false;
+    });
+
+    if (!allValid) return;
+
+    console.warn('[DEMO] 폼 데이터가 제출되었지만 백엔드가 연결되지 않았습니다. 실제 운영 시 API 엔드포인트를 연결하세요.');
+
+    overlay.classList.add('active');
+    closeBtn.focus();
+    this.reset();
+  });
+
+  // ===== SUCCESS OVERLAY: CLOSE & FOCUS MANAGEMENT =====
+  function closeOverlay() {
+    overlay.classList.remove('active');
+    submitBtn.focus();
+  }
+
+  closeBtn.addEventListener('click', closeOverlay);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      closeOverlay();
+    }
+  });
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeOverlay();
+  });
+</script>
+</body>
+</html>
