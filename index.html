@@ -15,1202 +15,1850 @@
     }
 
     :root {
-      --bg: #000000;
-      --text: #f0f0fa;
-      --text-dim: rgba(240, 240, 250, 0.6);
-      --text-faint: rgba(240, 240, 250, 0.35);
-      --mint: #2ECC9B;
-      --btn-bg: rgba(240, 240, 250, 0.1);
-      --btn-border: rgba(240, 240, 250, 0.35);
-      --divider: rgba(240, 240, 250, 0.1);
-      --font: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      --white: #ffffff;
+      --text: #222222;
+      --text-secondary: #6a6a6a;
+      --accent: #ff385c;
+      --accent-dark: #e00b41;
+      --border: #dddddd;
+      --border-mid: #c1c1c1;
+      --surface: #f7f7f7;
+      --shadow-card: rgba(0,0,0,0.02) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 6px, rgba(0,0,0,0.1) 0px 4px 8px;
+      --shadow-hover: rgba(0,0,0,0.08) 0px 4px 12px;
+      --font: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --radius-btn: 8px;
+      --radius-badge: 14px;
+      --radius-card: 16px;
+      --radius-large: 32px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font);
-      background: var(--bg);
+      background: var(--white);
       color: var(--text);
-      font-size: 17px;
-      line-height: 1.65;
+      font-size: 16px;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
 
-    /* ===== TYPOGRAPHY ===== */
-    .label {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      margin-bottom: 24px;
-    }
-
-    .section-title {
-      font-size: clamp(32px, 4vw, 56px);
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-
-    .section-sub {
-      font-size: 17px;
-      font-weight: 400;
-      color: var(--text-dim);
-      line-height: 1.7;
-      max-width: 640px;
-    }
-
-    /* ===== LAYOUT ===== */
-    section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 0;
-    }
-
-    .inner {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    /* ===== DIVIDER ===== */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--divider);
-    }
-
-    /* ===== GHOST BUTTON ===== */
-    .btn-ghost {
-      display: inline-block;
-      background: var(--btn-bg);
-      border: 1px solid var(--btn-border);
-      border-radius: 32px;
-      padding: 14px 32px;
-      font-family: var(--font);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text);
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
-
-    .btn-ghost:hover {
-      background: rgba(240, 240, 250, 0.17);
-      border-color: rgba(240, 240, 250, 0.55);
-    }
-
-    .btn-primary {
-      background: rgba(46, 204, 155, 0.15);
-      border: 1px solid rgba(46, 204, 155, 0.5);
-      border-radius: 32px;
-      padding: 16px 40px;
-      font-family: var(--font);
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      background: var(--text);
+      color: var(--white);
+      padding: 8px 16px;
+      border-radius: var(--radius-btn);
       font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text);
-      cursor: pointer;
-      transition: background 0.3s ease, border-color 0.3s ease;
-      width: 100%;
+      font-weight: 600;
+      z-index: 9999;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* Focus visible */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
     }
 
-    .btn-primary:hover {
-      background: rgba(46, 204, 155, 0.25);
-      border-color: rgba(46, 204, 155, 0.75);
+    /* ===== HERO SECTION ===== */
+    #hero {
+      position: relative;
+      height: 250vh;
+      background: var(--white);
     }
 
-    /* ===== SCROLL ANIMATION ===== */
-    .fade-in {
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0 24px;
+    }
+
+    .hero-text-group {
+      text-align: center;
+      margin-bottom: 40px;
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      z-index: 10;
+      position: relative;
     }
-
-    .fade-in.visible {
+    .hero-text-group.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .fade-in-delay-1 { transition-delay: 0.1s; }
-    .fade-in-delay-2 { transition-delay: 0.2s; }
-    .fade-in-delay-3 { transition-delay: 0.3s; }
-    .fade-in-delay-4 { transition-delay: 0.4s; }
-    .fade-in-delay-5 { transition-delay: 0.5s; }
-    .fade-in-delay-6 { transition-delay: 0.6s; }
-    .fade-in-delay-7 { transition-delay: 0.7s; }
-
-    /* ===== SKIP LINK ===== */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      border: 0;
-    }
-
-    .sr-only:focus {
-      position: fixed;
-      top: 16px;
-      left: 16px;
-      width: auto;
-      height: auto;
-      padding: 12px 24px;
-      margin: 0;
-      clip: auto;
-      background: var(--bg);
-      border: 1px solid var(--btn-border);
-      border-radius: 32px;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 700;
-      z-index: 9999;
-      text-decoration: none;
-    }
-
-    /* ===== FOCUS VISIBLE ===== */
-    .btn-ghost:focus-visible,
-    .btn-primary:focus-visible {
-      outline: 2px solid var(--mint);
-      outline-offset: 4px;
-    }
-
-    input:focus-visible,
-    select:focus-visible,
-    textarea:focus-visible {
-      outline: none;
-      border-bottom-color: var(--mint);
-    }
-
-    /* ===== S1 HERO ===== */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 80px 48px 0;
-      position: relative;
-    }
-
-    #hero .hero-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      margin-bottom: 32px;
-    }
-
-    #hero .hero-title {
-      font-size: clamp(40px, 5.5vw, 72px);
-      font-weight: 700;
-      line-height: 1.05;
-      color: var(--text);
-      margin-bottom: 28px;
-      white-space: pre-line;
-    }
-
-    #hero .hero-sub {
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--text-dim);
-      line-height: 1.7;
-      max-width: 600px;
-      margin: 0 auto 40px;
-    }
-
-    #hero .hero-stats {
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      margin-top: auto;
-      padding: 48px 0 64px;
-      width: 100%;
-      max-width: 720px;
-      border-top: 1px solid var(--divider);
-    }
-
-    .hero-stat {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 24px;
-    }
-
-    .hero-stat + .hero-stat {
-      border-left: 1px solid var(--divider);
-    }
-
-    .hero-stat .stat-num {
-      font-size: clamp(32px, 4vw, 48px);
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .hero-stat .stat-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-faint);
-    }
-
-    /* ===== S2 SYSTEM OVERVIEW ===== */
-    .system-items {
-      margin-top: 64px;
-    }
-
-    .system-item {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 0 32px;
-      padding: 36px 0;
-      border-top: 1px solid var(--divider);
-    }
-
-    .system-item:last-child {
-      border-bottom: 1px solid var(--divider);
-    }
-
-    .system-item .item-num {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--text-faint);
-      padding-top: 4px;
-    }
-
-    .system-item .item-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .system-item .item-desc {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-dim);
-    }
-
-    /* ===== S3 FUNNEL ===== */
-    .funnel-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-      margin-top: 48px;
-    }
-
-    .funnel-left .section-sub {
-      margin-bottom: 40px;
-    }
-
-    .quote-block {
-      border-left: 2px solid var(--mint);
-      padding: 0 0 0 24px;
-      margin-top: 32px;
-    }
-
-    .quote-block p {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-dim);
-      line-height: 1.75;
-      font-style: italic;
-    }
-
-    .funnel-steps {
-      position: relative;
-      margin-top: 12px;
-    }
-
-    .funnel-step {
-      display: grid;
-      grid-template-columns: 40px 1fr;
-      gap: 0 20px;
-      padding: 24px 0;
-      border-top: 1px solid var(--divider);
-      position: relative;
-    }
-
-    .funnel-step:last-child {
-      border-bottom: 1px solid var(--divider);
-    }
-
-    .funnel-step .step-num {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--text-faint);
-      padding-top: 3px;
-    }
-
-    .funnel-step .step-text {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-dim);
-    }
-
-    .funnel-step .step-text strong {
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    /* ===== S4 ASSIGNMENT ===== */
-    .assignment-items {
-      margin-top: 64px;
-    }
-
-    .assignment-item {
-      padding: 40px 0;
-      border-top: 1px solid var(--divider);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .assignment-item:last-child {
-      border-bottom: 1px solid var(--divider);
-    }
-
-    .assignment-item .item-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-
-    .assignment-item .item-desc {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-dim);
-      max-width: 560px;
-    }
-
-    .big-number {
-      font-size: clamp(48px, 5vw, 72px);
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1;
-      text-align: right;
-    }
-
-    .big-number .big-number-label {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      text-align: right;
-      margin-top: 6px;
-    }
-
-    /* ===== S5 TECH ===== */
-    .tech-items {
-      margin-top: 64px;
-    }
-
-    .tech-item {
-      padding: 36px 0;
-      border-top: 1px solid var(--divider);
-    }
-
-    .tech-item:last-child {
-      border-bottom: 1px solid var(--divider);
-    }
-
-    .tech-item .item-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-
-    .tech-item .item-desc {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-dim);
-    }
-
-    .tech-quote {
-      margin-top: 64px;
-      text-align: center;
-    }
-
-    .tech-quote p {
-      font-size: clamp(18px, 2vw, 26px);
-      font-weight: 700;
-      color: var(--text-dim);
-      line-height: 1.5;
-      letter-spacing: 1px;
-    }
-
-    /* ===== S6 BENEFITS ===== */
-    .benefits-items {
-      margin-top: 64px;
-    }
-
-    .benefit-item {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 0 32px;
-      padding: 36px 0;
-      border-top: 1px solid var(--divider);
-    }
-
-    .benefit-item:last-child {
-      border-bottom: 1px solid var(--divider);
-    }
-
-    .benefit-item .item-num {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--text-faint);
-      padding-top: 4px;
-    }
-
-    .benefit-item .item-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .benefit-item .item-desc {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-dim);
-    }
-
-    /* ===== S7 NUMBERS ===== */
-    #numbers {
-      min-height: 60vh;
-      padding: 80px 0;
-    }
-
-    .numbers-row {
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    .number-item {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 32px;
-    }
-
-    .number-item + .number-item {
-      border-left: 1px solid var(--divider);
-    }
-
-    .number-item .num {
-      font-size: clamp(48px, 6vw, 80px);
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-
-    .number-item .num-label {
+    .hero-label {
+      display: inline-block;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: var(--text-faint);
+      color: var(--text-secondary);
+      margin-bottom: 16px;
     }
 
-    /* ===== S8 FORM ===== */
-    #form {
-      padding: 120px 0 80px;
-    }
-
-    .form-wrap {
-      max-width: 640px;
-    }
-
-    .form-fields {
-      margin-top: 56px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .field label {
-      font-size: 11px;
+    .hero-title {
+      font-size: clamp(28px, 4vw, 52px);
       font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-faint);
+      letter-spacing: -0.5px;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 14px;
     }
 
-    .field input,
-    .field select,
-    .field textarea {
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(240, 240, 250, 0.2);
-      outline: none;
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* MacBook wrapper — perspective container */
+    .macbook-wrapper {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      perspective: 1200px;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* The entire macbook unit that gets scaled/moved */
+    .macbook {
+      width: 100%;
+      transform-origin: center bottom;
+      /* JS applies: scale, translateY */
+    }
+
+    /* Screen portion (lid) */
+    .macbook-screen {
+      background: #1c1c1e;
+      border-radius: 14px 14px 0 0;
+      padding: 10px 10px 0 10px;
+      border: 1.5px solid #3a3a3c;
+      border-bottom: none;
+      transform-origin: bottom center;
+      /* JS applies: rotateX */
+      position: relative;
+      box-shadow:
+        0 -2px 8px rgba(0,0,0,0.3),
+        0 0 0 1px rgba(255,255,255,0.06) inset;
+    }
+
+    /* Notch */
+    .macbook-notch {
+      width: 56px;
+      height: 6px;
+      background: #0a0a0a;
+      border-radius: 0 0 6px 6px;
+      margin: 0 auto 4px;
+    }
+
+    /* Display area */
+    .macbook-display {
+      background: #e8eaf0;
+      border-radius: 6px;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fake UI inside the MacBook */
+    .fake-ui {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fake-ui-bar {
+      background: #1c1c1e;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .dot-red   { background: #ff5f57; }
+    .dot-yellow{ background: #ffbd2e; }
+    .dot-green { background: #28c840; }
+
+    .fake-ui-bar-title {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      margin-left: 8px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .fake-ui-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .fake-sidebar {
+      width: 22%;
+      background: #f0f1f5;
+      border-right: 1px solid #dde0e8;
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .fake-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 6px;
+      border-radius: 6px;
+      font-size: 9px;
+      color: #444;
+      font-weight: 500;
+    }
+    .fake-menu-item.active {
+      background: rgba(255,56,92,0.12);
+      color: #ff385c;
+    }
+
+    .fake-menu-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    .fake-content {
+      flex: 1;
+      background: #f7f8fc;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    .fake-content-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 2px;
+    }
+
+    .fake-stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .fake-stat-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .fake-stat-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #222;
+    }
+    .fake-stat-label {
+      font-size: 8px;
+      color: #999;
+      margin-top: 1px;
+    }
+
+    .fake-chart-area {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 8px;
+      flex: 1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow: hidden;
+    }
+
+    .fake-chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      flex: 1;
+      padding-top: 4px;
+    }
+
+    .fake-bar {
+      flex: 1;
+      border-radius: 3px 3px 0 0;
+      min-height: 10px;
+    }
+
+    .fake-list {
+      background: var(--white);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .fake-list-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 8px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 8px;
+      color: #555;
+    }
+    .fake-list-item:last-child { border-bottom: none; }
+
+    .fake-avatar {
+      width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* MacBook base / keyboard */
+    .macbook-base {
+      background: linear-gradient(to bottom, #c8c9ca, #b0b1b2);
+      height: 14px;
+      border-radius: 0 0 4px 4px;
+      border: 1.5px solid #9a9b9c;
+      border-top: none;
+      position: relative;
+    }
+
+    .macbook-hinge {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to bottom, #888, #aaa);
+      position: absolute;
+      top: 0;
+    }
+
+    .macbook-bottom-edge {
+      background: linear-gradient(to bottom, #d8d9da, #c0c1c2);
+      height: 5px;
+      border-radius: 0 0 6px 6px;
+      border: 1px solid #aaa;
+      border-top: none;
+      margin: 0 8px;
+    }
+
+    /* Screen glow */
+    .macbook-glow {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 40px;
+      background: radial-gradient(ellipse, rgba(255,56,92,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .macbook-glow.active { opacity: 1; }
+
+    /* Hero stats row */
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 36px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s 0.2s ease-out, transform 0.6s 0.2s ease-out;
+      z-index: 10;
+      position: relative;
+    }
+    .hero-stats.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat-val {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    .hero-stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* CTA button */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--white);
       font-family: var(--font);
       font-size: 16px;
-      font-weight: 400;
-      color: var(--text);
-      padding: 12px 0;
-      width: 100%;
-      transition: border-color 0.3s ease;
-      appearance: none;
-      -webkit-appearance: none;
-      border-radius: 0;
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: rgba(240, 240, 250, 0.25);
-    }
-
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-bottom-color: var(--mint);
-    }
-
-    .field select {
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: var(--radius-btn);
+      border: none;
       cursor: pointer;
+      letter-spacing: -0.2px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 28px;
+      position: relative;
+      z-index: 10;
+      opacity: 0;
+      animation: fadeInBtn 0.6s 0.8s ease-out forwards;
+    }
+    @keyframes fadeInBtn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255,56,92,0.35);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 96px 24px;
     }
 
-    .field select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f0f0fa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 4px center;
-      padding-right: 24px;
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
     }
 
-    .field select option {
-      background: #000000;
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
       color: var(--text);
+      margin-bottom: 12px;
     }
 
-    .field textarea {
-      resize: none;
-      min-height: 120px;
-      line-height: 1.65;
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 560px;
     }
 
-    .form-submit {
-      margin-top: 48px;
+    .section-header {
+      margin-bottom: 56px;
     }
 
-    .field-error {
-      font-size: 12px;
-      color: #ff6b6b;
-      letter-spacing: 0.5px;
-      margin-top: 4px;
-      display: none;
+    /* ===== SYSTEM OVERVIEW (S2) ===== */
+    #system-overview {
+      background: var(--white);
     }
 
-    .field.has-error input,
-    .field.has-error select,
-    .field.has-error textarea {
-      border-bottom-color: #ff6b6b;
+    .system-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
 
-    .field.has-error .field-error {
-      display: block;
+    .system-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .system-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
     }
 
-    /* ===== SUCCESS OVERLAY ===== */
-    #success-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.92);
+    .icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .system-card-body {}
+
+    .system-card-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .system-card-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ===== FUNNEL STRATEGY (S3) ===== */
+    #funnel {
+      background: var(--surface);
+    }
+
+    .quote-block {
+      border-left: 3px solid var(--accent);
+      padding-left: 24px;
+      margin: 32px 0 48px;
+    }
+    .quote-text {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .funnel-timeline {
+      position: relative;
+    }
+
+    /* Desktop: horizontal */
+    .funnel-steps {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      position: relative;
+    }
+
+    .funnel-steps::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .funnel-step {
       display: flex;
       flex-direction: column;
       align-items: center;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .funnel-step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .funnel-step.active .funnel-step-num {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    .funnel-step-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* ===== ASSIGNMENT SYSTEM (S4) ===== */
+    #assignment {
+      background: var(--white);
+    }
+
+    .assignment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .assignment-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .assignment-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .assignment-card .icon-wrap {
+      margin-bottom: 20px;
+    }
+
+    .assignment-card-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .assignment-card-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .assignment-big-num {
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -2px;
+      margin-top: 16px;
+      line-height: 1;
+    }
+
+    .assignment-big-unit {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-left: 2px;
+    }
+
+    /* ===== DATA & TECH (S5) ===== */
+    #data-tech {
+      background: var(--surface);
+    }
+
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .data-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .data-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .data-card .icon-wrap { margin-bottom: 16px; }
+
+    .data-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .data-card-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ===== BENEFITS (S6) ===== */
+    #benefits {
+      background: var(--white);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .benefit-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .benefit-card-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .benefit-card-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ===== NUMBERS (S7) ===== */
+    #numbers {
+      background: linear-gradient(135deg, #ff385c 0%, #e00b41 100%);
+      padding: 80px 24px;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .number-item {
+      text-align: center;
+    }
+
+    .number-val {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .number-label {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+    }
+
+    /* ===== APPLICATION FORM (S8) ===== */
+    #apply {
+      background: var(--white);
+    }
+
+    .form-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px;
+      box-shadow: var(--shadow-card);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-btn);
+      padding: 14px 16px;
+      font-family: var(--font);
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--text);
+      box-shadow: 0 0 0 3px rgba(34,34,34,0.08);
+    }
+    .form-input.error,
+    .form-select.error,
+    .form-textarea.error {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,56,92,0.1);
+    }
+
+    .form-textarea { resize: vertical; min-height: 120px; }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236a6a6a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-error {
+      font-size: 13px;
+      color: var(--accent);
+      margin-top: 6px;
+      display: none;
+    }
+    .form-error.visible { display: block; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px;
+      border-radius: var(--radius-btn);
+      border: none;
+      cursor: pointer;
+      letter-spacing: -0.2px;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-submit:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255,56,92,0.35);
+    }
+    .btn-submit:active { transform: translateY(0); }
+
+    /* ===== SUCCESS OVERLAY ===== */
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
       justify-content: center;
       z-index: 1000;
+      padding: 24px;
       opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.6s ease;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
     }
-
-    #success-overlay.active {
+    .success-overlay.active {
       opacity: 1;
-      pointer-events: all;
+      visibility: visible;
     }
 
-    #success-overlay .success-title {
-      font-size: clamp(24px, 3vw, 40px);
+    .success-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: var(--shadow-card);
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .success-overlay.active .success-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255,56,92,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .success-title {
+      font-size: 22px;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 16px;
-      text-align: center;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
     }
 
-    #success-overlay .success-sub {
+    .success-desc {
       font-size: 15px;
-      font-weight: 400;
-      color: var(--text-dim);
-      text-align: center;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 28px;
     }
 
-    #success-overlay .success-close {
-      margin-top: 40px;
+    .btn-close-overlay {
+      background: var(--surface);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: var(--radius-btn);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
     }
+    .btn-close-overlay:hover { background: var(--border); }
 
     /* ===== FOOTER ===== */
     footer {
-      border-top: 1px solid var(--divider);
-      padding: 40px 48px;
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
       text-align: center;
     }
-
-    footer p {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-faint);
+    .footer-text {
+      font-size: 14px;
+      color: var(--text-secondary);
     }
+
+    /* ===== SCROLL ANIMATION ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger for children */
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
+    .stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 100ms; }
+    .stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 200ms; }
+    .stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 300ms; }
+    .stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 400ms; }
+    .stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 500ms; }
+    .stagger.visible > *:nth-child(7) { opacity: 1; transform: none; transition-delay: 600ms; }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 1024px) {
-      .funnel-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
+    @media (max-width: 900px) {
+      .system-grid { grid-template-columns: 1fr; }
+      .assignment-grid { grid-template-columns: 1fr; }
+      .data-grid { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
     }
 
-    @media (max-width: 768px) {
-      section {
-        padding: 80px 0;
-        min-height: 80vh;
-      }
+    @media (max-width: 640px) {
+      section { padding: 64px 20px; }
+      .form-card { padding: 28px 20px; }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .number-val { font-size: 36px; }
+      .hero-stats { gap: 28px; flex-wrap: wrap; justify-content: center; }
 
-      .inner {
-        padding: 0 24px;
-      }
-
-      #hero {
-        padding: 80px 24px 0;
-      }
-
-      #hero .hero-stats {
+      /* Funnel: vertical on mobile */
+      .funnel-steps {
         flex-direction: column;
+        gap: 12px;
+      }
+      .funnel-steps::before {
+        top: 0;
+        bottom: 0;
+        left: 15px;
+        right: auto;
+        width: 2px;
+        height: auto;
+      }
+      .funnel-step {
+        flex-direction: row;
+        gap: 14px;
         align-items: center;
-        gap: 32px;
-        padding: 40px 0 48px;
       }
-
-      .hero-stat + .hero-stat {
-        border-left: none;
-        border-top: 1px solid var(--divider);
-        padding-top: 32px;
-      }
-
-      .numbers-row {
-        flex-wrap: wrap;
-        padding: 0 24px;
-        gap: 0;
-      }
-
-      .number-item {
-        flex: 0 0 50%;
-        padding: 32px 16px;
-      }
-
-      .number-item + .number-item {
-        border-left: none;
-      }
-
-      .number-item:nth-child(2n) {
-        border-left: 1px solid var(--divider);
-      }
-
-      .number-item:nth-child(n+3) {
-        border-top: 1px solid var(--divider);
-      }
-
-      .assignment-item {
-        grid-template-columns: 1fr;
-      }
-
-      .big-number {
-        text-align: left;
-      }
-
-      .big-number .big-number-label {
-        text-align: left;
-      }
-
-      .system-item {
-        grid-template-columns: 36px 1fr;
-        gap: 0 20px;
-      }
-
-      #numbers {
-        min-height: auto;
-        padding: 60px 0;
-      }
-
-      footer {
-        padding: 32px 24px;
-      }
+      .funnel-step-num { margin-bottom: 0; flex-shrink: 0; }
+      .funnel-step-label { text-align: left; }
     }
 
     @media (max-width: 480px) {
-      .btn-ghost {
-        padding: 12px 24px;
-        font-size: 12px;
-      }
-
-      .system-item .item-title,
-      .benefit-item .item-title,
-      .assignment-item .item-title,
-      .tech-item .item-title {
-        font-size: 18px;
-      }
+      .macbook-wrapper { max-width: 340px; }
     }
   </style>
 </head>
 <body>
-<a href="#form" class="sr-only">지원서로 건너뛰기</a>
 
-<!-- ===== S1. HERO ===== -->
-<section id="hero">
-  <div class="fade-in hero-label">INSTRUCTOR RECRUITMENT</div>
-  <h1 class="fade-in fade-in-delay-1 hero-title">성공의 공식은&#10;이미 증명되었습니다</h1>
-  <p class="fade-in fade-in-delay-2 hero-sub">명문대 출신 X &nbsp;·&nbsp; 수학 전공자 X — 시스템만으로 4년 연속 연 매출 10억 달성</p>
-  <a href="#form" class="btn-ghost fade-in fade-in-delay-3">강사 지원하기</a>
+  <!-- Skip link -->
+  <a href="#apply" class="skip-link">지원서로 바로 이동</a>
 
-  <div class="hero-stats fade-in fade-in-delay-4">
-    <div class="hero-stat">
-      <span class="stat-num counter" data-target="10" data-suffix="억+">10억+</span>
-      <span class="stat-label">연 매출 (4년 연속)</span>
+  <!-- ==============================
+       S1. HERO
+  ============================== -->
+  <section id="hero">
+    <div class="hero-sticky" id="hero-sticky">
+
+      <!-- Text above MacBook -->
+      <div class="hero-text-group" id="hero-text">
+        <span class="hero-label">PM Online Academy</span>
+        <h1 class="hero-title">성공의 공식은 이미<br>증명되었습니다</h1>
+        <p class="hero-subtitle">시스템만으로 4년 연속 연 매출 10억 달성</p>
+      </div>
+
+      <!-- MacBook mockup -->
+      <div class="macbook-wrapper" id="macbook-wrapper">
+        <div class="macbook" id="macbook">
+          <!-- Screen / lid -->
+          <div class="macbook-screen" id="macbook-screen">
+            <div class="macbook-notch"></div>
+            <!-- Display -->
+            <div class="macbook-display">
+              <div class="fake-ui">
+                <!-- Top bar -->
+                <div class="fake-ui-bar">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                  <span class="fake-ui-bar-title">PM 온라인 학원 — 대시보드</span>
+                </div>
+                <!-- Body -->
+                <div class="fake-ui-body">
+                  <!-- Sidebar -->
+                  <div class="fake-sidebar">
+                    <div class="fake-menu-item active">
+                      <span class="fake-menu-dot" style="background:#ff385c"></span>대시보드
+                    </div>
+                    <div class="fake-menu-item">
+                      <span class="fake-menu-dot" style="background:#5b8af0"></span>수강생
+                    </div>
+                    <div class="fake-menu-item">
+                      <span class="fake-menu-dot" style="background:#34c79b"></span>과제 관리
+                    </div>
+                    <div class="fake-menu-item">
+                      <span class="fake-menu-dot" style="background:#f5a623"></span>퍼널 현황
+                    </div>
+                    <div class="fake-menu-item">
+                      <span class="fake-menu-dot" style="background:#b8b8c0"></span>설정
+                    </div>
+                  </div>
+                  <!-- Main content -->
+                  <div class="fake-content">
+                    <div class="fake-content-title">이번 달 현황</div>
+                    <div class="fake-stats-row">
+                      <div class="fake-stat-card">
+                        <div class="fake-stat-val" style="color:#ff385c">10억+</div>
+                        <div class="fake-stat-label">연 매출</div>
+                      </div>
+                      <div class="fake-stat-card">
+                        <div class="fake-stat-val">1,247</div>
+                        <div class="fake-stat-label">누적 수강생</div>
+                      </div>
+                      <div class="fake-stat-card">
+                        <div class="fake-stat-val" style="color:#34c79b">95%</div>
+                        <div class="fake-stat-label">제출률</div>
+                      </div>
+                    </div>
+                    <div class="fake-chart-area">
+                      <div style="font-size:8px;font-weight:700;color:#222">월별 수강생 추이</div>
+                      <div class="fake-chart-bars">
+                        <div class="fake-bar" style="height:45%;background:#ffe0e6"></div>
+                        <div class="fake-bar" style="height:55%;background:#ffb3c0"></div>
+                        <div class="fake-bar" style="height:62%;background:#ff8099"></div>
+                        <div class="fake-bar" style="height:70%;background:#ff5c7a"></div>
+                        <div class="fake-bar" style="height:78%;background:#ff385c"></div>
+                        <div class="fake-bar" style="height:88%;background:#e00b41"></div>
+                        <div class="fake-bar" style="height:100%;background:#c50036"></div>
+                      </div>
+                    </div>
+                    <div class="fake-list">
+                      <div class="fake-list-item">
+                        <span class="fake-avatar" style="background:#5b8af0"></span>
+                        김○○ — 과제 제출 완료
+                      </div>
+                      <div class="fake-list-item">
+                        <span class="fake-avatar" style="background:#34c79b"></span>
+                        이○○ — AI 피드백 발송됨
+                      </div>
+                      <div class="fake-list-item">
+                        <span class="fake-avatar" style="background:#f5a623"></span>
+                        박○○ — 2주 넛지 단계
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Glow -->
+          <div class="macbook-glow" id="macbook-glow"></div>
+          <!-- Keyboard base -->
+          <div class="macbook-base">
+            <div class="macbook-hinge"></div>
+          </div>
+          <div class="macbook-bottom-edge"></div>
+        </div>
+      </div>
+
+      <!-- Stats below MacBook -->
+      <div class="hero-stats" id="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-val">10억+</div>
+          <div class="hero-stat-label">연 매출</div>
+        </div>
+        <div class="hero-stat" style="border-left:1px solid var(--border);border-right:1px solid var(--border);padding:0 48px;">
+          <div class="hero-stat-val">1,000+</div>
+          <div class="hero-stat-label">누적 수강생</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val">5년+</div>
+          <div class="hero-stat-label">브랜드 운영</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <a href="#apply" class="btn-primary">
+        강사 지원하기
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+
     </div>
-    <div class="hero-stat">
-      <span class="stat-num counter" data-target="1000" data-suffix="+">1,000+</span>
-      <span class="stat-label">누적 수강생</span>
+  </section>
+
+  <!-- ==============================
+       S2. SYSTEM OVERVIEW
+  ============================== -->
+  <section id="system-overview">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">System</p>
+        <h2 class="section-title">시스템이 가져온 성과</h2>
+        <p class="section-subtitle">온라인 학원의 성과는 단순한 강의만으로 이루어지지 않았습니다</p>
+      </div>
+
+      <div class="system-grid stagger">
+        <!-- Card 1 -->
+        <div class="system-card">
+          <div class="icon-wrap">
+            <!-- Funnel icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 4h18l-7 9v7l-4-2v-5L3 4z"/>
+            </svg>
+          </div>
+          <div class="system-card-body">
+            <div class="system-card-title">의도된 불편함</div>
+            <div class="system-card-desc">결제의 허들을 높여 신뢰도를 제고합니다. 쉬운 결제보다 강한 라포가 먼저입니다.</div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="system-card">
+          <div class="icon-wrap">
+            <!-- Clipboard icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+              <rect x="9" y="3" width="6" height="4" rx="2"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="system-card-body">
+            <div class="system-card-title">강제 관리 시스템</div>
+            <div class="system-card-desc">학습을 할 수밖에 없는 과제 관리. 제출하지 않으면 퇴원이 자동으로 처리됩니다.</div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="system-card">
+          <div class="icon-wrap">
+            <!-- Chat / speech bubbles icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              <path d="M8 10h8M8 14h5"/>
+            </svg>
+          </div>
+          <div class="system-card-body">
+            <div class="system-card-title">초 개인화한 소통</div>
+            <div class="system-card-desc">밀착형 라포 형성. 수강생 한 명 한 명에게 다른 메시지와 다른 방식으로 소통합니다.</div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="system-card">
+          <div class="icon-wrap">
+            <!-- Video / play button icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="4"/>
+              <polygon fill="#222222" stroke="none" points="10,9 10,15 16,12"/>
+            </svg>
+          </div>
+          <div class="system-card-body">
+            <div class="system-card-title">압도적 영상 퀄리티</div>
+            <div class="system-card-desc">집중할 수밖에 없는 콘텐츠. 편집과 구성 모두 프리미엄 기준으로 제작합니다.</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="hero-stat">
-      <span class="stat-num counter" data-target="5" data-suffix="년+">5년+</span>
-      <span class="stat-label">브랜드 운영</span>
+  </section>
+
+  <!-- ==============================
+       S3. FUNNEL STRATEGY
+  ============================== -->
+  <section id="funnel">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Funnel</p>
+        <h2 class="section-title">결제유도보다 강한 라포를 형성하는 인입</h2>
+      </div>
+
+      <div class="quote-block reveal">
+        <p class="quote-text">"결제 링크가 보이는 순간 '구매 상품'이 됩니다.<br>안 보이면 '들어가고 싶은 곳'이 됩니다."</p>
+      </div>
+
+      <div class="funnel-timeline reveal">
+        <div class="funnel-steps stagger">
+          <div class="funnel-step active">
+            <div class="funnel-step-num">1</div>
+            <div class="funnel-step-label">DM<br>자료</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-step-num">2</div>
+            <div class="funnel-step-label">인증<br>요청</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-step-num">3</div>
+            <div class="funnel-step-label">직접<br>소통</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-step-num">4</div>
+            <div class="funnel-step-label">2주<br>넛지</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-step-num">5</div>
+            <div class="funnel-step-label">타겟<br>필터링</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-step-num">6</div>
+            <div class="funnel-step-label">3시간<br>OT</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-step-num">7</div>
+            <div class="funnel-step-label">직접<br>결제</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       S4. ASSIGNMENT SYSTEM
+  ============================== -->
+  <section id="assignment">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Assignment</p>
+        <h2 class="section-title">오프라인을 압도하는 강제적 과제 관리</h2>
+      </div>
+
+      <div class="assignment-grid stagger">
+        <!-- Card 1 -->
+        <div class="assignment-card">
+          <div class="icon-wrap">
+            <!-- Video icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="4"/>
+              <polygon fill="#222222" stroke="none" points="10,9 10,15 16,12"/>
+            </svg>
+          </div>
+          <div class="assignment-card-title">영상 과제 (티칭 공부법)</div>
+          <div class="assignment-card-desc">당일 배운 개념을 설명하는 영상을 촬영해 제출합니다. 가르치면서 진짜로 이해합니다.</div>
+        </div>
+        <!-- Card 2 -->
+        <div class="assignment-card">
+          <div class="icon-wrap">
+            <!-- AI / sparkle icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z"/>
+              <path d="M5 17l.8 2.4L8 20.2l-2.2.8L5 23l-.8-2.2L2 20.2l2.2-.8L5 17z"/>
+              <path d="M19 14l.6 1.8L21.4 16.4l-1.8.6L19 19l-.6-1.8L16.6 16.4l1.8-.6L19 14z"/>
+            </svg>
+          </div>
+          <div class="assignment-card-title">AI 기반 피드백</div>
+          <div class="assignment-card-desc">Gemini API로 키워드를 분석하고 강사 명의로 개인화된 피드백을 자동 발송합니다.</div>
+          <div>
+            <span class="assignment-big-num">10</span><span class="assignment-big-unit">분</span>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="assignment-card">
+          <div class="icon-wrap">
+            <!-- Shield icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="assignment-card-title">강제 퇴원 시스템</div>
+          <div class="assignment-card-desc">기한 내 미제출 시 즉각 퇴원. 예외 없이, 타협 없이. 이것이 신뢰의 기반입니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       S5. DATA & TECH
+  ============================== -->
+  <section id="data-tech">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Data & Technology</p>
+        <h2 class="section-title">30명에게 30개의 다른 숙제</h2>
+        <p class="section-subtitle">수강생 개개인의 학교와 약점에 맞는 완전 개인화 과제를 시스템이 자동으로 생성합니다</p>
+      </div>
+
+      <div class="data-grid stagger">
+        <!-- Card 1 -->
+        <div class="data-card">
+          <div class="icon-wrap">
+            <!-- Chart / bar chart icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="12" width="4" height="9" rx="1"/>
+              <rect x="10" y="7" width="4" height="14" rx="1"/>
+              <rect x="17" y="3" width="4" height="18" rx="1"/>
+              <path d="M3 6l5-3 6 4 6-4" stroke-dasharray="2 1"/>
+            </svg>
+          </div>
+          <div class="data-card-title">수학비서 INDEX</div>
+          <div class="data-card-desc">전국 학교별 기출 문제를 유형별로 분류한 독자적인 데이터베이스입니다.</div>
+        </div>
+        <!-- Card 2 -->
+        <div class="data-card">
+          <div class="icon-wrap">
+            <!-- Book icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 6C2 6 4 5 12 5s10 1 10 1v15s-2-1-10-1S2 21 2 21V6z"/>
+              <path d="M12 5v16"/>
+              <path d="M6 9h3M6 12h3M18 9h-3M18 12h-3"/>
+            </svg>
+          </div>
+          <div class="data-card-title">개인화 과제</div>
+          <div class="data-card-desc">학교별 빈출 유형과 개인 약점을 결합해 30명이 각각 다른 문제를 받습니다.</div>
+        </div>
+        <!-- Card 3 -->
+        <div class="data-card">
+          <div class="icon-wrap">
+            <!-- Gear icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </div>
+          <div class="data-card-title">스마트펜 추적</div>
+          <div class="data-card-desc">필기 궤적을 추적해 이해도를 수치화합니다. (추후 적용 예정)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       S6. BENEFITS
+  ============================== -->
+  <section id="benefits">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Benefits</p>
+        <h2 class="section-title">합류하면 얻는 것</h2>
+        <p class="section-subtitle">강의 하나가 아닌 운영 전체를 함께합니다</p>
+      </div>
+
+      <div class="benefits-grid stagger">
+        <!-- Card 1 -->
+        <div class="benefit-card">
+          <div class="icon-wrap">
+            <!-- System/Gear -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff385c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="benefit-card-title">검증된 시스템</div>
+            <div class="benefit-card-desc">퍼널, 과제 관리, AI 피드백이 모두 올인원으로 제공됩니다. 처음부터 다시 만들 필요가 없습니다.</div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="benefit-card">
+          <div class="icon-wrap">
+            <!-- Education/Book -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff385c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 6C2 6 4 5 12 5s10 1 10 1v15s-2-1-10-1S2 21 2 21V6z"/>
+              <path d="M12 5v16"/>
+              <path d="M6 9h3M6 12h3M18 9h-3M18 12h-3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="benefit-card-title">체계적 온보딩</div>
+            <div class="benefit-card-desc">교안 기반 강사 트레이닝으로 빠르게 시스템에 적응할 수 있도록 밀착 지원합니다.</div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="benefit-card">
+          <div class="icon-wrap">
+            <!-- Megaphone icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff385c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 10v4a1 1 0 0 0 1 1h2l5 5V4L6 9H4a1 1 0 0 0-1 1z"/>
+              <path d="M20.4 4.6a11 11 0 0 1 0 14.8M17 7a6 6 0 0 1 0 10"/>
+            </svg>
+          </div>
+          <div>
+            <div class="benefit-card-title">마케팅 지원</div>
+            <div class="benefit-card-desc">유튜브, 인스타그램 채널 전략을 함께 수립합니다. 콘텐츠 방향성과 브랜딩 전략 공유.</div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="benefit-card">
+          <div class="icon-wrap">
+            <!-- Chart/Data -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff385c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="12" width="4" height="9" rx="1"/>
+              <rect x="10" y="7" width="4" height="14" rx="1"/>
+              <rect x="17" y="3" width="4" height="18" rx="1"/>
+              <path d="M3 6l5-3 6 4 6-4" stroke-dasharray="2 1"/>
+            </svg>
+          </div>
+          <div>
+            <div class="benefit-card-title">데이터 도구</div>
+            <div class="benefit-card-desc">수학비서 INDEX와 학교별 기출 DB를 활용해 데이터 기반 수업을 설계할 수 있습니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       S7. NUMBERS
+  ============================== -->
+  <section id="numbers">
+    <div class="container">
+      <div class="numbers-grid stagger">
+        <div class="number-item">
+          <div class="number-val" data-count="10">0</div>
+          <div class="number-label">억+ 연 매출</div>
+        </div>
+        <div class="number-item">
+          <div class="number-val" data-count="1000">0</div>
+          <div class="number-label">+ 수강생</div>
+        </div>
+        <div class="number-item">
+          <div class="number-val" data-count="95">0</div>
+          <div class="number-label">%+ 제출률</div>
+        </div>
+        <div class="number-item">
+          <div class="number-val" data-count="5">0</div>
+          <div class="number-label">년+ 운영</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       S8. APPLICATION FORM
+  ============================== -->
+  <section id="apply">
+    <div class="container">
+      <div class="section-header reveal" style="text-align:center;max-width:560px;margin-left:auto;margin-right:auto;margin-bottom:48px;">
+        <p class="section-label">Apply</p>
+        <h2 class="section-title">함께할 강사를 찾습니다</h2>
+        <p class="section-subtitle" style="margin:0 auto;">시스템은 준비되어 있습니다. 이제 당신의 이야기를 들을 차례입니다.</p>
+      </div>
+
+      <div class="form-card reveal" role="main" aria-label="강사 지원 폼">
+        <form id="apply-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="name">이름 <span style="color:var(--accent)" aria-hidden="true">*</span></label>
+            <input
+              class="form-input"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="홍길동"
+              autocomplete="name"
+              required
+              aria-required="true"
+              aria-describedby="name-error"
+            />
+            <div class="form-error" id="name-error" role="alert" aria-live="polite">이름을 입력해주세요.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phone">연락처 <span style="color:var(--accent)" aria-hidden="true">*</span></label>
+            <input
+              class="form-input"
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="010-0000-0000"
+              autocomplete="tel"
+              required
+              aria-required="true"
+              aria-describedby="phone-error"
+            />
+            <div class="form-error" id="phone-error" role="alert" aria-live="polite">올바른 연락처를 입력해주세요. (예: 010-1234-5678)</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="career">경력 <span style="color:var(--accent)" aria-hidden="true">*</span></label>
+            <select
+              class="form-select"
+              id="career"
+              name="career"
+              required
+              aria-required="true"
+              aria-describedby="career-error"
+            >
+              <option value="">경력을 선택해주세요</option>
+              <option value="none">무경력 (강사 준비 중)</option>
+              <option value="under1">1년 미만</option>
+              <option value="1to3">1~3년</option>
+              <option value="3to5">3~5년</option>
+              <option value="over5">5년 이상</option>
+            </select>
+            <div class="form-error" id="career-error" role="alert" aria-live="polite">경력을 선택해주세요.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="intro">자기소개 <span style="color:var(--accent)" aria-hidden="true">*</span></label>
+            <textarea
+              class="form-textarea"
+              id="intro"
+              name="intro"
+              placeholder="현재 상황, 강사를 지원하는 이유, 본인의 강점 등을 자유롭게 적어주세요."
+              required
+              aria-required="true"
+              aria-describedby="intro-error"
+              rows="5"
+            ></textarea>
+            <div class="form-error" id="intro-error" role="alert" aria-live="polite">자기소개를 50자 이상 입력해주세요.</div>
+          </div>
+
+          <button type="submit" class="btn-submit">지원서 제출하기</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       FOOTER
+  ============================== -->
+  <footer>
+    <p class="footer-text">PM 온라인 학원 · 검증된 시스템으로 함께하는 수학 교육</p>
+  </footer>
+
+  <!-- ==============================
+       SUCCESS OVERLAY
+  ============================== -->
+  <div
+    class="success-overlay"
+    id="success-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="success-title"
+    aria-describedby="success-desc"
+  >
+    <div class="success-card" id="success-card">
+      <div class="success-icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ff385c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <div class="success-title" id="success-title">지원서가 접수되었습니다</div>
+      <p class="success-desc" id="success-desc">
+        소중한 지원 감사합니다.<br>
+        빠른 시일 내에 연락드리겠습니다.
+      </p>
+      <button class="btn-close-overlay" id="btn-close-overlay" type="button">
+        닫기
+      </button>
     </div>
   </div>
-</section>
 
-<!-- ===== S2. SYSTEM OVERVIEW ===== -->
-<section id="system">
-  <div class="inner">
-    <span class="label fade-in">PROVEN SYSTEM</span>
-    <h2 class="section-title fade-in fade-in-delay-1">시스템이 가져온 성과</h2>
-    <p class="section-sub fade-in fade-in-delay-2">온라인 학원의 성과는 단순한 강의만으로 이루어지지 않았습니다</p>
+  <script>
+    // ============================================================
+    // MacBook Hero Scroll Animation
+    // ============================================================
+    (function () {
+      const hero = document.getElementById('hero');
+      const macbookScreen = document.getElementById('macbook-screen');
+      const macbook = document.getElementById('macbook');
+      const heroText = document.getElementById('hero-text');
+      const heroStats = document.getElementById('hero-stats');
+      const macbookGlow = document.getElementById('macbook-glow');
 
-    <div class="system-items">
-      <div class="system-item fade-in fade-in-delay-1">
-        <span class="item-num">01</span>
-        <div>
-          <div class="item-title">의도된 불편함</div>
-          <div class="item-desc">결제의 허들을 높여 신뢰도 제고</div>
-        </div>
-      </div>
-      <div class="system-item fade-in fade-in-delay-2">
-        <span class="item-num">02</span>
-        <div>
-          <div class="item-title">강제 관리 시스템</div>
-          <div class="item-desc">학습을 할 수 밖에 없는 과제 관리</div>
-        </div>
-      </div>
-      <div class="system-item fade-in fade-in-delay-3">
-        <span class="item-num">03</span>
-        <div>
-          <div class="item-title">초 개인화한 소통</div>
-          <div class="item-desc">밀착형 라포 형성</div>
-        </div>
-      </div>
-      <div class="system-item fade-in fade-in-delay-4">
-        <span class="item-num">04</span>
-        <div>
-          <div class="item-title">압도적 영상 퀄리티</div>
-          <div class="item-desc">집중할 수 밖에 없는 콘텐츠</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      let ticking = false;
+      let lastProgress = -1;
 
-<!-- ===== S3. FUNNEL STRATEGY ===== -->
-<section id="funnel">
-  <div class="inner">
-    <span class="label fade-in">FUNNEL STRATEGY</span>
-    <h2 class="section-title fade-in fade-in-delay-1">결제유도보다 강한 라포를 형성하는 인입</h2>
+      // Initial state: lid almost closed
+      macbookScreen.style.transform = 'rotateX(62deg)';
+      macbookScreen.style.transformStyle = 'preserve-3d';
+      macbook.style.transform = 'scale(1.0) translateY(0px)';
 
-    <div class="funnel-grid">
-      <div class="funnel-left fade-in fade-in-delay-2">
-        <p class="section-sub">퍼널 전략의 핵심은 결제를 유도하지 않는 것입니다. 학생이 스스로 들어오고 싶게 만드는 구조가 실제 결제율을 높입니다.</p>
-        <div class="quote-block">
-          <p>"결제 링크가 보이는 순간 '구매 상품'이 됩니다. 안 보이면 '들어가고 싶은 곳'이 됩니다."</p>
-        </div>
-      </div>
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
+      function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+      function easeInOut(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
 
-      <div class="funnel-steps fade-in fade-in-delay-3">
-        <div class="funnel-step">
-          <span class="step-num">01</span>
-          <div class="step-text"><strong>DM으로 오게하는 자료 제작</strong></div>
-        </div>
-        <div class="funnel-step">
-          <span class="step-num">02</span>
-          <div class="step-text"><strong>학생 인증 요청</strong></div>
-        </div>
-        <div class="funnel-step">
-          <span class="step-num">03</span>
-          <div class="step-text"><strong>팬심을 만드는 직접 소통</strong></div>
-        </div>
-        <div class="funnel-step">
-          <span class="step-num">04</span>
-          <div class="step-text"><strong>2주 후 넛지</strong></div>
-        </div>
-        <div class="funnel-step">
-          <span class="step-num">05</span>
-          <div class="step-text"><strong>타겟 필터링</strong> — 3등급 이하 전문</div>
-        </div>
-        <div class="funnel-step">
-          <span class="step-num">06</span>
-          <div class="step-text"><strong>3시간 OT 완주</strong></div>
-        </div>
-        <div class="funnel-step">
-          <span class="step-num">07</span>
-          <div class="step-text"><strong>학생 직접 결제</strong></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      function applyHeroScroll() {
+        const rect = hero.getBoundingClientRect();
+        const totalScroll = hero.offsetHeight - window.innerHeight;
+        const scrolled = -rect.top;
+        const progress = clamp(scrolled / totalScroll, 0, 1);
 
-<!-- ===== S4. ASSIGNMENT SYSTEM ===== -->
-<section id="assignment">
-  <div class="inner">
-    <span class="label fade-in">MANAGEMENT SYSTEM</span>
-    <h2 class="section-title fade-in fade-in-delay-1">오프라인을 압도하는 강제적 과제 관리</h2>
+        if (Math.abs(progress - lastProgress) < 0.001) return;
+        lastProgress = progress;
 
-    <div class="assignment-items">
-      <div class="assignment-item fade-in fade-in-delay-2">
-        <div>
-          <div class="item-title">영상 과제 (티칭 공부법)</div>
-          <div class="item-desc">당일 배운 개념을 선생님처럼 설명하는 영상 촬영 제출</div>
-        </div>
-      </div>
-      <div class="assignment-item fade-in fade-in-delay-3">
-        <div>
-          <div class="item-title">AI 기반 피드백</div>
-          <div class="item-desc">Gemini API로 키워드 분석, 강사 명의로 피드백 발송. 피드백 시간이 획기적으로 단축됩니다.</div>
-        </div>
-        <div class="big-number">
-          10분
-          <span class="big-number-label">피드백 소요시간</span>
-        </div>
-      </div>
-      <div class="assignment-item fade-in fade-in-delay-4">
-        <div>
-          <div class="item-title">강제 퇴원 시스템</div>
-          <div class="item-desc">기한 내 미제출 시 즉각 퇴원 및 권한 박탈. 타협이 시스템을 무너뜨린다.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        // Phase 1 (0 → 0.33): Lid opens (rotateX 62deg → 0deg)
+        const p1 = clamp(progress / 0.33, 0, 1);
+        const p1e = easeOut(p1);
+        const rotateX = lerp(62, 0, p1e);
+        macbookScreen.style.transform = 'rotateX(' + rotateX + 'deg)';
 
-<!-- ===== S5. NEXT-GEN TECH ===== -->
-<section id="tech">
-  <div class="inner">
-    <span class="label fade-in">DATA-DRIVEN</span>
-    <h2 class="section-title fade-in fade-in-delay-1">30명에게 30개의 다른 숙제</h2>
-
-    <div class="tech-items">
-      <div class="tech-item fade-in fade-in-delay-2">
-        <div class="item-title">수학비서 INDEX</div>
-        <div class="item-desc">전국 학교별 기출 분류, 히트맵 시각화로 빈출 유형을 한눈에 파악합니다.</div>
-      </div>
-      <div class="tech-item fade-in fade-in-delay-3">
-        <div class="item-title">개인화 과제</div>
-        <div class="item-desc">학교별 빈출 유형 + 학생 개인 약점 + 실전 모의고사까지 결합한 완전 맞춤형 커리큘럼</div>
-      </div>
-      <div class="tech-item fade-in fade-in-delay-4">
-        <div class="item-title">스마트펜</div>
-        <div class="item-desc">필기 궤적 추적, 집중도 트래킹 — 추후 적용 예정</div>
-      </div>
-    </div>
-
-    <div class="tech-quote fade-in fade-in-delay-5">
-      <p>데이터 기반 개인화 커리큘럼</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== S6. BENEFITS ===== -->
-<section id="benefits">
-  <div class="inner">
-    <span class="label fade-in">WHY JOIN US</span>
-    <h2 class="section-title fade-in fade-in-delay-1">합류하면 얻는 것</h2>
-
-    <div class="benefits-items">
-      <div class="benefit-item fade-in fade-in-delay-2">
-        <span class="item-num">01</span>
-        <div>
-          <div class="item-title">검증된 시스템</div>
-          <div class="item-desc">퍼널 전략, 과제 관리, AI 피드백 올인원 제공</div>
-        </div>
-      </div>
-      <div class="benefit-item fade-in fade-in-delay-3">
-        <span class="item-num">02</span>
-        <div>
-          <div class="item-title">체계적 온보딩</div>
-          <div class="item-desc">단계별 교안 기반 신규 강사 트레이닝</div>
-        </div>
-      </div>
-      <div class="benefit-item fade-in fade-in-delay-4">
-        <span class="item-num">03</span>
-        <div>
-          <div class="item-title">마케팅 지원</div>
-          <div class="item-desc">유튜브·인스타그램 채널 전략 코칭</div>
-        </div>
-      </div>
-      <div class="benefit-item fade-in fade-in-delay-5">
-        <span class="item-num">04</span>
-        <div>
-          <div class="item-title">데이터 도구</div>
-          <div class="item-desc">수학비서 INDEX, 학교별 기출 DB 제공</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== S7. NUMBERS ===== -->
-<section id="numbers">
-  <div class="numbers-row">
-    <div class="number-item fade-in">
-      <span class="num counter" data-target="10" data-suffix="억+">10억+</span>
-      <span class="num-label">연 매출 · 4년 연속</span>
-    </div>
-    <div class="number-item fade-in fade-in-delay-1">
-      <span class="num counter" data-target="1000" data-suffix="+">1,000+</span>
-      <span class="num-label">누적 수강생</span>
-    </div>
-    <div class="number-item fade-in fade-in-delay-2">
-      <span class="num counter" data-target="95" data-suffix="%+">95%+</span>
-      <span class="num-label">과제 제출률</span>
-    </div>
-    <div class="number-item fade-in fade-in-delay-3">
-      <span class="num counter" data-target="5" data-suffix="년+">5년+</span>
-      <span class="num-label">브랜드 운영</span>
-    </div>
-  </div>
-</section>
-
-<!-- ===== S8. APPLICATION FORM ===== -->
-<section id="form">
-  <div class="inner">
-    <div class="form-wrap">
-      <span class="label fade-in">JOIN US</span>
-      <h2 class="section-title fade-in fade-in-delay-1">함께할 강사를 찾습니다</h2>
-      <p class="section-sub fade-in fade-in-delay-2">아래 양식을 작성해 주세요. 검토 후 연락드리겠습니다.</p>
-
-      <form id="apply-form" class="form-fields fade-in fade-in-delay-3" novalidate>
-        <div class="field" id="field-name">
-          <label for="name">이름</label>
-          <input type="text" id="name" name="name" required placeholder="홍길동" />
-          <span class="field-error">이름을 입력해 주세요</span>
-        </div>
-        <div class="field" id="field-phone">
-          <label for="phone">연락처</label>
-          <input type="tel" id="phone" name="phone" required placeholder="010-0000-0000" pattern="[0-9]{2,3}-?[0-9]{3,4}-?[0-9]{4}" />
-          <span class="field-error">올바른 연락처를 입력해 주세요</span>
-        </div>
-        <div class="field" id="field-experience">
-          <label for="experience">수학 강의 경력</label>
-          <select id="experience" name="experience" required>
-            <option value="" disabled selected>선택해 주세요</option>
-            <option value="none">없음</option>
-            <option value="under1">1년 미만</option>
-            <option value="1to3">1-3년</option>
-            <option value="over3">3년 이상</option>
-          </select>
-          <span class="field-error">경력을 선택해 주세요</span>
-        </div>
-        <div class="field" id="field-intro">
-          <label for="intro">자기소개 및 지원 동기</label>
-          <textarea id="intro" name="intro" required placeholder="간략하게 자신을 소개하고 지원 동기를 작성해 주세요."></textarea>
-          <span class="field-error">자기소개를 입력해 주세요</span>
-        </div>
-        <div class="form-submit">
-          <button type="submit" class="btn-primary">지원서 제출하기</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer>
-  <p>PM 온라인 학원</p>
-</footer>
-
-<!-- ===== SUCCESS OVERLAY ===== -->
-<div id="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-title-text">
-  <h2 class="success-title" id="success-title-text">지원이 완료되었습니다</h2>
-  <p class="success-sub">검토 후 빠른 시일 내에 연락드리겠습니다.</p>
-  <button class="btn-ghost success-close" id="success-close-btn" aria-label="지원 완료 창 닫기">닫기</button>
-</div>
-
-<script>
-  // ===== SCROLL ANIMATION =====
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
-  });
-
-  // ===== COUNTER ANIMATION =====
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.dataset.animated) {
-        entry.target.dataset.animated = 'true';
-        const target = parseInt(entry.target.dataset.target, 10);
-        const suffix = entry.target.dataset.suffix || '';
-        const duration = 1400;
-        const start = performance.now();
-
-        function step(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const value = Math.round(eased * target);
-          entry.target.textContent = (value >= 1000 ? value.toLocaleString() : value) + suffix;
-          if (progress < 1) requestAnimationFrame(step);
+        // Glow activates when lid is mostly open
+        if (p1 > 0.7) {
+          macbookGlow.classList.add('active');
+        } else {
+          macbookGlow.classList.remove('active');
         }
 
-        requestAnimationFrame(step);
+        // Phase 2 (0.33 → 0.66): Text fades in, scale slightly down
+        const p2Raw = clamp((progress - 0.33) / 0.33, 0, 1);
+        const p2e = easeInOut(p2Raw);
+        const scale = lerp(1.0, 0.88, p2e);
+
+        // Text reveal
+        if (p2Raw > 0.2) {
+          heroText.classList.add('visible');
+          heroStats.classList.add('visible');
+        }
+
+        // Phase 3 (0.66 → 1.0): MacBook moves up, stats fully visible
+        const p3Raw = clamp((progress - 0.66) / 0.34, 0, 1);
+        const p3e = easeInOut(p3Raw);
+        const translateY = lerp(0, -40, p3e);
+        const finalScale = lerp(scale, 0.75, p3e);
+
+        macbook.style.transform =
+          'scale(' + finalScale + ') translateY(' + translateY + 'px)';
+
+        ticking = false;
       }
-    });
-  }, { threshold: 0.3 });
 
-  document.querySelectorAll('.counter').forEach(el => {
-    counterObserver.observe(el);
-  });
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(applyHeroScroll);
+          ticking = true;
+        }
+      }, { passive: true });
 
-  // ===== FORM VALIDATION & SUBMIT =====
-  const form = document.getElementById('apply-form');
-  const overlay = document.getElementById('success-overlay');
-  const closeBtn = document.getElementById('success-close-btn');
-  const submitBtn = form.querySelector('button[type="submit"]');
+      // Initial call
+      applyHeroScroll();
+    })();
 
-  function validateField(id) {
-    const field = document.getElementById('field-' + id);
-    const input = document.getElementById(id);
-    let valid = true;
+    // ============================================================
+    // IntersectionObserver — section reveals
+    // ============================================================
+    (function () {
+      const revealEls = document.querySelectorAll('.reveal, .stagger');
 
-    if (id === 'phone') {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealEls.forEach(function (el) { observer.observe(el); });
+    })();
+
+    // ============================================================
+    // Counter animation for numbers section
+    // ============================================================
+    (function () {
+      const counterEls = document.querySelectorAll('[data-count]');
+      let counted = false;
+
+      const counterObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !counted) {
+            counted = true;
+            counterEls.forEach(function (el) {
+              const target = parseInt(el.getAttribute('data-count'), 10);
+              const duration = 1400;
+              const start = performance.now();
+
+              function step(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(ease * target);
+                el.textContent = current.toLocaleString('ko-KR');
+                if (progress < 1) requestAnimationFrame(step);
+              }
+              requestAnimationFrame(step);
+            });
+          }
+        });
+      }, { threshold: 0.4 });
+
+      const numbersSection = document.getElementById('numbers');
+      if (numbersSection) counterObserver.observe(numbersSection);
+    })();
+
+    // ============================================================
+    // Form validation
+    // ============================================================
+    (function () {
+      const form = document.getElementById('apply-form');
+      const overlay = document.getElementById('success-overlay');
+      const btnClose = document.getElementById('btn-close-overlay');
       const phoneRegex = /^01[016789]-?\d{3,4}-?\d{4}$/;
-      valid = phoneRegex.test(input.value.trim());
-    } else if (id === 'experience') {
-      valid = input.value !== '';
-    } else {
-      valid = input.value.trim() !== '';
-    }
 
-    field.classList.toggle('has-error', !valid);
-    return valid;
-  }
+      function showError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        input.classList.add('error');
+        error.classList.add('visible');
+        input.setAttribute('aria-invalid', 'true');
+      }
 
-  ['name', 'phone', 'experience', 'intro'].forEach(id => {
-    const input = document.getElementById(id);
-    input.addEventListener('blur', () => validateField(id));
-    input.addEventListener('input', () => {
-      document.getElementById('field-' + id).classList.remove('has-error');
-    });
-  });
+      function clearError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        input.classList.remove('error');
+        error.classList.remove('visible');
+        input.setAttribute('aria-invalid', 'false');
+      }
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
+      function validateField(input) {
+        const id = input.id;
+        const errorId = id + '-error';
+        const val = input.value.trim();
 
-    const fields = ['name', 'phone', 'experience', 'intro'];
-    let allValid = true;
+        if (id === 'name') {
+          if (!val) { showError(id, errorId); return false; }
+        } else if (id === 'phone') {
+          if (!val || !phoneRegex.test(val.replace(/\s/g, ''))) { showError(id, errorId); return false; }
+        } else if (id === 'career') {
+          if (!val) { showError(id, errorId); return false; }
+        } else if (id === 'intro') {
+          if (val.length < 50) { showError(id, errorId); return false; }
+        }
+        clearError(id, errorId);
+        return true;
+      }
 
-    fields.forEach(id => {
-      if (!validateField(id)) allValid = false;
-    });
+      // Live validation
+      ['name', 'phone', 'career', 'intro'].forEach(function (id) {
+        const el = document.getElementById(id);
+        el.addEventListener('blur', function () { validateField(el); });
+        el.addEventListener('input', function () {
+          if (el.classList.contains('error')) validateField(el);
+        });
+      });
 
-    if (!allValid) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const fields = ['name', 'phone', 'career', 'intro'];
+        let valid = true;
+        fields.forEach(function (id) {
+          const el = document.getElementById(id);
+          if (!validateField(el)) valid = false;
+        });
+        if (!valid) {
+          // Focus first error
+          const firstError = form.querySelector('.form-input.error, .form-select.error, .form-textarea.error');
+          if (firstError) firstError.focus();
+          return;
+        }
+        openOverlay();
+        form.reset();
+      });
 
-    console.warn('[DEMO] 폼 데이터가 제출되었지만 백엔드가 연결되지 않았습니다. 실제 운영 시 API 엔드포인트를 연결하세요.');
+      // Focus trap
+      let lastFocus;
+      function openOverlay() {
+        lastFocus = document.activeElement;
+        overlay.classList.add('active');
+        setTimeout(function () { btnClose.focus(); }, 50);
+        document.addEventListener('keydown', trapFocus);
+        document.addEventListener('keydown', escClose);
+      }
 
-    overlay.classList.add('active');
-    closeBtn.focus();
-    this.reset();
-  });
+      function closeOverlay() {
+        overlay.classList.remove('active');
+        document.removeEventListener('keydown', trapFocus);
+        document.removeEventListener('keydown', escClose);
+        if (lastFocus) lastFocus.focus();
+      }
 
-  // ===== SUCCESS OVERLAY: CLOSE & FOCUS MANAGEMENT =====
-  function closeOverlay() {
-    overlay.classList.remove('active');
-    submitBtn.focus();
-  }
+      function escClose(e) {
+        if (e.key === 'Escape') closeOverlay();
+      }
 
-  closeBtn.addEventListener('click', closeOverlay);
+      function trapFocus(e) {
+        if (e.key !== 'Tab') return;
+        const focusable = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) {
-      closeOverlay();
-    }
-  });
+      btnClose.addEventListener('click', closeOverlay);
 
-  overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) closeOverlay();
-  });
-</script>
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeOverlay();
+      });
+    })();
+  </script>
 </body>
 </html>
